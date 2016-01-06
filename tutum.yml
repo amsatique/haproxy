@@ -7,5 +7,15 @@ lb:
   roles:
     - global
 web:
-  image: tutum/hello-world
+  image: amsatique/transcode-frontend
   target_num_containers: 2
+  links:
+    - "back:back"
+back:
+  image: amsatique/transcode-backend
+  links:
+    - "bdd:bdd"
+bdd:
+  image: amsatique/transcode-bdd
+  ports:
+    - 27017:27017
